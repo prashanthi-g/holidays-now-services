@@ -3,12 +3,21 @@ package com.example.springboot;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class DestinationController {
 
+	@Autowired
+	private DestinationService destinationService;
+	
+	@RequestMapping("/destinations")
+	public List<Destination> getAllDestinations() {
+		return 	destinationService.getAllDestinations();
+	}
+	
 	/* Hard coded
 	@RequestMapping("/all")
 	public String getAll() {
@@ -29,13 +38,6 @@ public class DestinationController {
 		return " Littlw Elam Recreational Center";
 	} */
 	
-	@RequestMapping("/destinations")
-	public List<Destination> getAll() {
-		return Arrays.asList(
-				new Destination("Parks", "Frisco"," Little Elm Recreational Center"),
-				new Destination("Movies", "Irving"," Maze Runner"),
-				new Destination("Events", "Dallas"," Escape Room")
-				)	;
-	}
+	
 	
 }
